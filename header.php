@@ -1,6 +1,5 @@
 <?php
 include "proses/connect.php";
-include "main.php";
 $query = mysqli_query($conn, "SELECT * FROM tb_user WHERE username='$_SESSION[username_kantinbiru]'");
 $records = mysqli_fetch_array($query);
 ?>
