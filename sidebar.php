@@ -1,3 +1,5 @@
+<?php include "main.php"; ?>
+
 <div class="col-lg-2">
     <nav class="navbar navbar-expand-lg rounded border mt-2">
         <div class="container-fluid">
