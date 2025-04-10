@@ -7,8 +7,7 @@ if (!empty($_POST['input_orderitem_validate'])) {
     $meja = isset($_POST['meja']) ? htmlspecialchars(trim($_POST['meja'])) : "";
     $pelanggan = isset($_POST['pelanggan']) ? htmlspecialchars(trim($_POST['pelanggan'])) : "";
 
-    // Check if kode_order exists in tb_order
-    $stmt = $conn->prepare("SELECT id_order FROM tb_order WHERE id_order = ?");
+    $stmt = $conn->prepare("SELECT id_order FROM tb_order WHERE id_order = ?"); // Check if kode_order exists in tb_order
     $stmt->bind_param("i", $kode_order);
     $stmt->execute();
     $stmt->store_result();
@@ -28,8 +27,7 @@ if (!empty($_POST['input_orderitem_validate'])) {
                 break;
             }
 
-            // Check if menu_id exists in tb_list_order
-            $stmt_menu = $conn->prepare("SELECT * FROM tb_list_order WHERE menu = ? AND kode_order = ?");
+            $stmt_menu = $conn->prepare("SELECT * FROM tb_list_order WHERE menu = ? AND kode_order = ?"); // Check if menu_id exists in tb_list_order
             $stmt_menu->bind_param("ii", $menu_id, $kode_order);
             $stmt_menu->execute();
             $stmt_menu->store_result();
@@ -38,8 +36,7 @@ if (!empty($_POST['input_orderitem_validate'])) {
                 $message = '<script>alert("Item Menu yang dipilih sudah tersedia "); window.location="../?x=orderitem&order=' . $kode_order . '&meja=' . $meja . '&pelanggan=' . $pelanggan . '";</script>';
                 $success = false;
                 break;
-            } else {
-                // Insert into tb_list_order
+            } else { // Insert into tb_list_order
                 $stmt_insert = $conn->prepare("INSERT INTO tb_list_order (menu, kode_order, jumlah, catatan_menu) VALUES (?, ?, ?, ?)");
                 $stmt_insert->bind_param("iiis", $menu_id, $kode_order, $jumlah, $catatan);
                 if (!$stmt_insert->execute()) {
@@ -62,4 +59,3 @@ if (!empty($_POST['input_orderitem_validate'])) {
     $stmt->close();
 }
 echo $message;
-?>

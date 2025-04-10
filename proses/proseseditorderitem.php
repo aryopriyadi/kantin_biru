@@ -20,8 +20,7 @@ if (!empty($_POST['edit_orderitem_validate'])) {
 
     if ($stmt->num_rows > 0) {
         $message = '<script>alert("Item Menu yang dipilih sudah tersedia"); window.location="../?x=orderitem&order=' . $kode_order . '&meja=' . $meja . '&pelanggan=' . $pelanggan . '"</script>';
-    } else {
-        // Update the order item
+    } else { // Update the order item
         $stmt = $conn->prepare("UPDATE tb_list_order SET menu = ?, jumlah = ?, catatan_menu = ? WHERE id_list_order = ?");
         $stmt->bind_param("iiss", $menu, $jumlah, $catatan, $id);
         if ($stmt->execute()) {
@@ -32,5 +31,4 @@ if (!empty($_POST['edit_orderitem_validate'])) {
     }
     $stmt->close();
 }
-// echo $catatan;
 echo $message;
