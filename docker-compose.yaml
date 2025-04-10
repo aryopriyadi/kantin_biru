@@ -1,0 +1,49 @@
+services:
+  kantin_biru_db:
+    image: mysql:5.7
+    container_name: kantin_biru_db
+    volumes:
+      - kantin_biru_db_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: db_kantinbiru
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    ports:
+      - "3306:3306"
+    networks:
+      - kantin_biru_network
+
+  kantin_biru_app:
+    image: kantin_biru_image # Make sure this is the correct name of your built image
+    container_name: kantin_biru_container
+    ports:
+      - "9000:9000"
+    volumes:
+      - /home/nasena/.config/nginx/html/WWW/kantin_biru:/var/www/html
+    networks:
+      - kantin_biru_network
+    depends_on:
+      - kantin_biru_db
+
+  nginx-web:
+    image: nginx:latest
+    container_name: nginx
+    ports:
+      - "80:80"
+    volumes:
+      - /home/nasena/.config/nginx/html/WWW/kantin_biru:/usr/share/nginx/html/WWW/kantin_biru # Mount your HTML root
+      - ./conf:/etc/nginx/conf.d
+      - ./log:/var/log/nginx
+    restart: always
+    networks:
+      - kantin_biru_network
+    depends_on:
+      - kantin_biru_app
+
+networks:
+  kantin_biru_network:
+    driver: bridge
+
+volumes:
+  kantin_biru_db_data:
