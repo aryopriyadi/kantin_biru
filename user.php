@@ -1,5 +1,4 @@
 <?php
-// use LDAP\Result;
 include "proses/connect.php";
 $query = mysqli_query($conn, "SELECT * FROM tb_user");
 while ($record = mysqli_fetch_array($query)) {
@@ -126,21 +125,6 @@ while ($record = mysqli_fetch_array($query)) {
                                                         }
                                                     } ?>
                                                 </select>
-
-                                                <!-- <input type="text" class="form-control" id="floatingInput" placeholder="access level" name="level" 
-                                                 value="<?php if ($row['level'] == 1) {
-                                                            echo "Super Admin";
-                                                        } else if ($row['level'] == 2) {
-                                                            echo "Cashier";
-                                                        } else if ($row['level'] == 3) {
-                                                            echo "Waiter";
-                                                        } else if ($row['level'] == 4) {
-                                                            echo "Kitchen";
-                                                        } else {
-                                                            echo "Tidak ada access level";
-                                                        } // echo $row['level'] 
-                                                        ?>" disabled> -->
-
                                                 <label for="floatingPassword">Access Level</label>
                                             </div>
                                         </div>
@@ -208,23 +192,8 @@ while ($record = mysqli_fetch_array($query)) {
                                                         } else {
                                                             echo "<option value=" . ($key + 1) . "> $value </option>";
                                                         }
-                                                    }
-
-                                                    // foreach ($data as $key => $value) {
-                                                    //     echo "<option value=".($key+1).">".$value."</option>";
-                                                    // }
-
-                                                    ?>
+                                                    } ?>
                                                 </select>
-
-                                                <!-- <select class="form-select" aria-label="Default select example" name="level" required>
-                                                    <option value="0" hidden>Access Level</option>
-                                                    <option value="1">1 - Super Admin</option>
-                                                    <option value="2">2 - Cashier</option>
-                                                    <option value="3">3 - Waiter</option>
-                                                    <option value="4">4 - Kitchen</option>
-                                                </select> -->
-
                                                 <label for="floatingPassword">Access Level</label>
                                                 <div class="invalid-feedback">Pilih Access Level</div>
                                             </div>
@@ -346,18 +315,6 @@ while ($record = mysqli_fetch_array($query)) {
                             <?php
                             $no = 1;
                             foreach ($result as $row) { ?>
-                                <!-- echo "<tr>";
-                        echo "<td>".$row['id']."</td>";
-                        echo "<td>".$row['nama']."</td>";
-                        echo "<td>".$row['username']."</td>";
-                        echo "<td>".$row['level']."</td>";
-                        echo "<td>".$row['nim']."</td>";
-                        echo "<td class='d-flex'>";
-                        echo "<button class='btn btn-success btn-sm me-1' data-bs-toggle='modal' data-bs-target='#modalviewuser'><i class='bi bi-info-circle'></i></button>";
-                        echo "<button class='btn btn-warning btn-sm me-1'><i class='bi bi-pen'></i></button>";
-                        echo "<button class='btn btn-danger btn-sm'><i class='bi bi-trash'></i></button>";
-                        echo "</td>";
-                        echo "</tr>"; ?> -->
                                 <tr>
                                     <th scope="row"><?php echo $no++ ?></th>
                                     <td><?php echo $row['nama'] ?></td>
@@ -374,7 +331,6 @@ while ($record = mysqli_fetch_array($query)) {
                                         } else {
                                             echo "Tidak ada access level";
                                         }
-                                        // echo $row['level'] 
                                         ?></td>
                                     <td><?php echo $row['nim'] ?></td>
                                     <!-- <td><?php echo $row['password'] ?></td> -->

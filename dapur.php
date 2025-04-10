@@ -4,6 +4,7 @@ $query = mysqli_query($conn, "SELECT * FROM tb_list_order
 LEFT JOIN tb_order ON tb_order.id_order = tb_list_order.kode_order
 LEFT JOIN tb_menu ON tb_menu.id = tb_list_order.menu
 LEFT JOIN tb_bayar ON tb_bayar.id_bayar = tb_order.id_order
+LEFT JOIN tb_kategori_menu ON tb_menu.kategori = tb_kategori_menu.id_kategori
 -- WHERE tb_list_order.status_menu != 3
 ORDER BY tb_list_order.kode_order DESC");
 
@@ -201,10 +202,11 @@ $select_menu = mysqli_query($conn, "SELECT id, nama_menu FROM tb_menu");
                             <tr class="text-nowrap">
                                 <th scope="col">No</th>
                                 <!-- <th scope="col">Kode Order</th> -->
+                                <!-- <th scope="col">Waktu Order</th> -->
                                 <th scope="col">Nama</th>
-                                <th scope="col">Waktu Order</th>
+                                <th scope="col">Meja</th>
                                 <th scope="col">Nama Menu</th>
-                                <!-- <th scope="col">Meja</th> -->
+                                <th scope="col">Jenis</th>
                                 <th scope="col">Qty</th>
                                 <th scope="col">Notes</th>
                                 <th scope="col">Status</th>
@@ -218,11 +220,12 @@ $select_menu = mysqli_query($conn, "SELECT id, nama_menu FROM tb_menu");
                                     <tr>
                                         <td><?php echo $no++ ?></td>
                                         <!-- <td><?php echo $row['kode_order'] ?></td> -->
+                                        <!-- <td><?php echo $row['waktu_order'] ?></td> -->
                                         <td><?php echo $row['pelanggan'] ?></td>
-                                        <td><?php echo $row['waktu_order'] ?></td>
+                                        <td><?php echo $row['meja'] ?></td>
                                         <td><?php echo $row['nama_menu'] ?></td>
+                                        <td><?php echo $row['kategori_menu']?></td>
                                         <td><?php echo $row['jumlah'] ?></td>
-                                        <!-- <td><?php echo $row['meja'] ?></td> -->
                                         <td><?php echo $row['catatan_menu'] ?></td>
                                         <td><?php if ($row['status_menu'] == 1) {
                                                 echo "<span class='badge text-bg-warning'>Diproses Dapur</span>";

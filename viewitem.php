@@ -326,14 +326,11 @@ $select_menu = mysqli_query($conn, "SELECT id, nama_menu FROM tb_menu");
 <div id="contentStruk" class="d-none">
     <style>
         #struk-container {
-            /* Tambahkan ID unik */
             font-family: Arial, sans-serif;
             width: 300px;
             margin: 0 auto;
-            /* Pusatkan struk */
             border: 1px solid #000;
             padding: 10px;
-            /* Tambahkan style untuk tampilan yang lebih baik */
         }
 
         #struk-container h2 {

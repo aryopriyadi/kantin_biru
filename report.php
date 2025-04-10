@@ -57,12 +57,9 @@ while ($record = mysqli_fetch_array($query)) {
                                         } else {
                                             echo "<span class='badge text-bg-warning'>UnPaid</span>";
                                         } ?></td>
-                                    <!-- <td><?php echo (!empty($row['id_bayar'])) ? "<span class='badge text-bg-success'>Paid</span>" : "" ?> </td> -->
                                     <td><?php echo $row['waktu_order'] ?></td>
                                     <td><?php echo $row['waktu_bayar'] ?></td>
-                                    <td>
-                                        <a class="btn btn-success btn-sm me-1" href="./?x=viewitem&order=<?php echo $row['id_order'] . "&meja=" . $row['meja'] . "&pelanggan=" . $row['pelanggan'] ?>"><i class="bi bi-info-circle"></i></a>
-                                    </td>
+                                    <td><a class="btn btn-success btn-sm me-1" href="./?x=viewitem&order=<?php echo $row['id_order'] . "&meja=" . $row['meja'] . "&pelanggan=" . $row['pelanggan'] ?>"><i class="bi bi-info-circle"></i></a></td>
                                 </tr>
                             <?php } ?>
                         </tbody>

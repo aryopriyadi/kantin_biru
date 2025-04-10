@@ -1,6 +1,6 @@
 <?php
 include "proses/connect.php";
-$query = mysqli_query($conn, "SELECT * FROM tb_kategori_menu");
+$query = mysqli_query($conn, "SELECT * FROM tb_kategori_menu ORDER BY jenis_menu ASC");
 while ($record = mysqli_fetch_array($query)) {
     $result[] = $record;
 } ?>

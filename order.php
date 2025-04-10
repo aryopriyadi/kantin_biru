@@ -2,7 +2,6 @@
 include "proses/connect.php";
 date_default_timezone_set('Asia/Jakarta');
 
-// Fetch all unpaid orders
 $query = mysqli_query($conn, "SELECT tb_order.*, tb_bayar.id_bayar, nama, SUM(harga*jumlah) AS total_harga FROM tb_order 
 LEFT JOIN tb_user ON tb_user.id = tb_order.pelayan
 LEFT JOIN tb_list_order ON tb_list_order.kode_order = tb_order.id_order
@@ -98,7 +97,7 @@ while ($record = mysqli_fetch_array($query)) {
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <form class="needs-validation" novalidate action="proses/prosesedittorder.php" method="POST">
+                                    <form class="needs-validation" novalidate action="proses/proseseditorder.php" method="POST">
                                         <div class="row">
                                             <div class="col-lg-4">
                                                 <div class="form-floating mb-2">
@@ -171,8 +170,7 @@ while ($record = mysqli_fetch_array($query)) {
                 <!-- End Modal Deleting Order -->
 
                 <!-- Start Modal Order Payment -->
-                <?php foreach ($result as $row) { 
-                    // Fetch order items for the specific order
+                <?php foreach ($result as $row) { // Fetch order items for the specific order
                     $order_items_query = mysqli_query($conn, "SELECT tb_list_order.*, tb_menu.nama_menu, tb_menu.harga FROM tb_list_order 
                     LEFT JOIN tb_menu ON tb_menu.id = tb_list_order.menu
                     WHERE tb_list_order.kode_order = " . $row['id_order']);
@@ -352,8 +350,7 @@ while ($record = mysqli_fetch_array($query)) {
 </div>
 
 <script>
-    function cetakStruk(kode_order) {
-        // Fetch order details and items via AJAX
+    function cetakStruk(kode_order) { // Fetch order details and items via AJAX
         fetch(`proses/fetch_order_details.php?order=${kode_order}`)
             .then(response => response.json())
             .then(data => {
@@ -362,7 +359,6 @@ while ($record = mysqli_fetch_array($query)) {
                 document.getElementById('struk-meja').innerText = `Meja : ${data.meja}`;
                 document.getElementById('struk-waktu-order').innerText = `Waktu Order : ${data.waktu_order}`;
                 document.getElementById('struk-waktu-bayar').innerText = `Waktu Bayar : ${data.waktu_bayar || 'Belum Dibayar'}`;
-
                 const tbody = document.getElementById('struk-tbody');
                 tbody.innerHTML = '';
                 let total = 0;
@@ -378,9 +374,7 @@ while ($record = mysqli_fetch_array($query)) {
                     total += item.harga * item.jumlah;
                 });
 
-                document.getElementById('struk-grand-total').innerText = total.toLocaleString('id-ID');
-
-                // Print the struk
+                document.getElementById('struk-grand-total').innerText = total.toLocaleString('id-ID'); //print struk
                 var strukContent = document.getElementById('contentStruk').innerHTML;
                 var printWindow = window.open('', '', 'height=1000,width=1000');
                 printWindow.document.write('<html><head><title>Cetak Struk Pembayaran</title>');

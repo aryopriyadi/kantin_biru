@@ -1,14 +1,10 @@
 <?php
-// use LDAP\Result;
 include "proses/connect.php";
-// $query = mysqli_query($conn, "SELECT * FROM tb_menu LEFT JOIN tb_kategori_menu ON tb_kategori_menu.id = tb_menu.kategori");
-// $query = mysqli_query($conn, "SELECT tb_menu.*, tb_kategori_menu.kategori_menu FROM tb_menu LEFT JOIN tb_kategori_menu ON tb_kategori_menu.id = tb_menu.kategori GROUP BY tb_menu.id");
-// $query = mysqli_query($conn, "SELECT tb_menu.*, tb_kategori_menu.* FROM tb_menu LEFT JOIN tb_kategori_menu ON tb_kategori_menu.id = tb_menu.kategori");
 $query = mysqli_query($conn, "SELECT tb_menu.id, tb_menu.nama_menu, tb_menu.foto, tb_menu.harga, tb_menu.stock, tb_menu.deskripsi, tb_menu.kategori, tb_kategori_menu.kategori_menu, tb_kategori_menu.jenis_menu FROM tb_menu LEFT JOIN tb_kategori_menu ON tb_kategori_menu.id_kategori = tb_menu.kategori ORDER BY tb_menu.nama_menu ASC");
 while ($record = mysqli_fetch_array($query)) {
     $result[] = $record;
 }
-$kategori_menu = mysqli_query($conn, "SELECT id_kategori, kategori_menu FROM tb_kategori_menu");
+$kategori_menu = mysqli_query($conn, "SELECT id_kategori, kategori_menu FROM tb_kategori_menu ORDER BY kategori_menu ASC");
 ?>
 
 <div class="col-lg-10 mt-2 rounded">
@@ -36,7 +32,7 @@ $kategori_menu = mysqli_query($conn, "SELECT id_kategori, kategori_menu FROM tb_
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="input-group mb-2">
-                                            <input type="file" class="form-control py-3" id="inputFile" placeholder="Images" name="foto" required>
+                                            <input type="file" class="form-control py-3" id="inputFile" placeholder="Images" name="foto">
                                             <label class="input-group-text">Upload Foto Menu</label>
                                             <div class="invalid-feedback" for="inputFile"> Masukkan Foto Menu</div>
                                         </div>
@@ -66,12 +62,12 @@ $kategori_menu = mysqli_query($conn, "SELECT id_kategori, kategori_menu FROM tb_
                                         <div class="form-floating mb-2">
                                             <input type="number" class="form-control" id="floatingInput" placeholder="Harga Rupiah" name="harga" required>
                                             <label for="floatingInput">Harga Menu</label>
-                                            <div class="invalid-feedback"> Masukkan Harga Menu (Rupiah)</div>
+                                            <div class="invalid-feedback"> Masukkan Harga Menu</div>
                                         </div>
                                     </div>
                                     <div class="col-lg-4">
                                         <div class="form-floating mb-2">
-                                            <input type="number" class="form-control" id="floatingInput" placeholder="Jumlah Stock" name="stock" required>
+                                            <input type="number" class="form-control" id="floatingInput" placeholder="Jumlah Stock" name="stock">
                                             <label for="floatingInput">Stock</label>
                                             <div class="invalid-feedback"> Masukkan Jumlah Stock Menu</div>
                                         </div>
@@ -216,7 +212,7 @@ $kategori_menu = mysqli_query($conn, "SELECT id_kategori, kategori_menu FROM tb_
                                             </div>
                                             <div class="col-lg-4">
                                                 <div class="form-floating mb-2">
-                                                    <input type="number" class="form-control" id="floatingInput" placeholder="Jumlah Stock" name="stock" required value="<?php echo $row['stock'] ?>">
+                                                    <input type="number" class="form-control" id="floatingInput" placeholder="Jumlah Stock" name="stock" value="<?php echo $row['stock'] ?>">
                                                     <label for="floatingInput">Stock</label>
                                                     <div class="invalid-feedback"> Masukkan Jumlah Stock Menu</div>
                                                 </div>
@@ -249,7 +245,7 @@ $kategori_menu = mysqli_query($conn, "SELECT id_kategori, kategori_menu FROM tb_
                         <div class="modal-dialog modal-md modal-fullscreen-md-down">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Deleting User</h1>
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Deleting Menu</h1>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
@@ -280,7 +276,6 @@ $kategori_menu = mysqli_query($conn, "SELECT id_kategori, kategori_menu FROM tb_
                                 <th scope="col">Foto</th>
                                 <th scope="col">Nama Menu</th>
                                 <th scope="col">Deskripsi</th>
-                                <!-- <th scope="col">Jenis Menu</th> -->
                                 <th scope="col">Kategori</th>
                                 <th scope="col">Harga</th>
                                 <!-- <th scope="col">Stock</th> -->
@@ -293,34 +288,10 @@ $kategori_menu = mysqli_query($conn, "SELECT id_kategori, kategori_menu FROM tb_
                                 <tr>
                                     <th scope="row"><?php echo $no++ ?></th>
                                     <td>
-                                        <div style="width: 80px;"><img src="assets/img/<?php echo $row['foto'] ?>" class="img-thumbnail" alt="images"></div>
+                                        <div style="width: 80px; height: 80px;"><img src="assets/img/<?php echo $row['foto'] ?>" class="img-thumbnail" alt="images"></div>
                                     </td>
                                     <td><?php echo $row['nama_menu'] ?></td>
                                     <td><?php echo $row['deskripsi'] ?></td>
-                                    <!-- <td><?php echo ($row['jenis_menu'] == 1) ? "Makanan" : "Minuman" ?></td> -->
-                                    <!-- <td><?php if ($row['jenis_menu'] == 1) {
-                                                    echo "Makanan";
-                                                } else if ($row['jenis_menu'] == 2) {
-                                                    echo "Minuman";
-                                                } else if ($row['jenis_menu'] == 3) {
-                                                    echo "Barang-Barang";
-                                                } else {
-                                                    echo "Barang Tidak Tersedia";
-                                                } ?></td> -->
-                                    <!-- <td><?php
-                                                if (isset($row['jenis_menu'])) {
-                                                    if ($row['jenis_menu'] == 1) {
-                                                        echo "Makanan";
-                                                    } else if ($row['jenis_menu'] == 2) {
-                                                        echo "Minuman";
-                                                    } else if ($row['jenis_menu'] == 3) {
-                                                        echo "Barang-Barang";
-                                                    } else {
-                                                        echo "Barang Tidak Tersedia";
-                                                    }
-                                                } else {
-                                                    echo "Jenis Menu Tidak Ditemukan";
-                                                } ?> </td> -->
                                     <td><?php echo $row['kategori_menu'] ?></td>
                                     <td><?php echo number_format((int)$row['harga'], 0, ',', '.')  ?></td>
                                     <!-- <td><?php echo $row['stock'] ?></td> -->

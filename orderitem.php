@@ -9,8 +9,7 @@ GROUP BY id_list_order HAVING tb_list_order.kode_order = $_GET[order] ORDER BY t
 $kode = $_GET['order'];
 $meja = $_GET['meja'];
 $pelanggan = $_GET['pelanggan'];
-$paymentExists = false; // New variable to track payment status
-
+$paymentExists = false; //Variable tracking payment status
 $result = []; // Initialize $result as an empty array
 
 while ($record = mysqli_fetch_array($query)) {
@@ -89,15 +88,14 @@ $select_menu = mysqli_query($conn, "SELECT tb_menu.id, tb_menu.nama_menu, tb_men
                         <div class="modal-body">
                             <form class="needs-validation" novalidate action="proses/prosesinputorderitem.php" method="POST">
                                 <div class="table-responsive mt-2">
-                                    <table class="table table-hover" id="example">
+                                    <table class="table table-hover" id="orderitem">
                                         <thead>
                                             <tr class="text-nowrap">
                                                 <th scope="col">No</th>
                                                 <th scope="col">Foto</th>
-                                                <!-- <th scope="col">id</th> -->
                                                 <th scope="col">Nama Menu</th>
                                                 <!-- <th scope="col">Deskripsi</th> -->
-                                                <!-- <th scope="col">Kategori</th> -->
+                                                <th scope="col">Kategori</th>
                                                 <th scope="col">Harga</th>
                                                 <th scope="col">Action</th>
                                                 <th scope="col">Jumlah</th>
@@ -110,15 +108,15 @@ $select_menu = mysqli_query($conn, "SELECT tb_menu.id, tb_menu.nama_menu, tb_men
                                                 <tr>
                                                     <th scope="row"><?php echo $no++ ?></th>
                                                     <td>
-                                                        <div style="width: 80px;"><img src="assets/img/<?php echo $value['foto'] ?>" class="img-thumbnail" alt="images"></div>
+                                                        <div style="width: 80px; height: 80px;"><img src="assets/img/<?php echo $value['foto'] ?>" class="img-thumbnail" alt="images"></div>
                                                     </td>
                                                     <input type="hidden" name="nama_menu[]" value="<?php echo $value['nama_menu'] ?>">
                                                     <input type="hidden" name="kode_order" value="<?php echo $kode; ?>">
                                                     <input type="hidden" name="meja" value="<?php echo $meja ?>">
-                                                    <input type="hidden" name="pelanggan" value="<?php echo $pelanggan ?>"> 
+                                                    <input type="hidden" name="pelanggan" value="<?php echo $pelanggan ?>">
                                                     <td><?php echo $value['nama_menu'] ?></td>
                                                     <!-- <td><?php echo $value['deskripsi'] ?></td> -->
-                                                    <!-- <td><?php echo $value['kategori_menu'] ?></td> -->
+                                                    <td><?php echo $value['kategori_menu'] ?></td>
                                                     <td><?php echo number_format((int)$value['harga'], 0, ',', '.')  ?></td>
                                                     <td>
                                                         <div class="form-check form-switch">
@@ -145,14 +143,13 @@ $select_menu = mysqli_query($conn, "SELECT tb_menu.id, tb_menu.nama_menu, tb_men
             <!-- End Modal Add New Item Order -->
 
             <script>
-                // Function to toggle quantity and notes input based on checkbox state.  Improved for efficiency.
+                // Function to toggle quantity and notes input based on checkbox state.
                 const checkboxes = document.querySelectorAll('input[name="id_menu[]"]');
                 checkboxes.forEach(checkbox => {
                     checkbox.addEventListener('change', function() {
                         const itemId = this.value;
                         document.getElementById(`quantity_${itemId}`).disabled = !this.checked;
-                        document.getElementById(`notes_${itemId}`).disabled = !this.checked;
-                        // Set default value to 0 if unchecked
+                        document.getElementById(`notes_${itemId}`).disabled = !this.checked; // Set default value to 0 if unchecked
                         if (!this.checked) {
                             document.getElementById(`quantity_${itemId}`).value = 0;
                         }
@@ -455,6 +452,12 @@ $select_menu = mysqli_query($conn, "SELECT tb_menu.id, tb_menu.nama_menu, tb_men
 </div>
 
 <script>
+    new DataTable('#orderitem', {
+        info: false,
+        ordering: false,
+        paging: false
+    });
+
     function cetakStruk() {
         var strukContent = document.getElementById('contentStruk').innerHTML;
         var printWindow = window.open('', '', 'height=1000,width=1000');

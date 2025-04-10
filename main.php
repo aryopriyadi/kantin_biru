@@ -1,5 +1,4 @@
-<?php 
-if (empty($_SESSION['username_kantinbiru'])) {
+<?php if (empty($_SESSION['username_kantinbiru'])) {
     header('location: login');
 }
 include "proses/connect.php";
@@ -16,15 +15,10 @@ $hasil = mysqli_fetch_array($query);
     <title>Kantin Biru FTI UKSW</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-
-    <!-- <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-    <link rel="stylesheet" href="https://cdn.datatables.net/2.2.2/css/jquery.dataTables.min.css" />
-    <script src="https://cdn.datatables.net/2.2.2/js/jquery.dataTables.min.js"></script> -->
-
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
     <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
-    
+
     <script>
         $(document).ready(function() {
             $('#example').DataTable();
@@ -34,11 +28,11 @@ $hasil = mysqli_fetch_array($query);
 </head>
 
 <body>
-    <!-- HEADER --> <?php include './header.php'; ?>
+    <?php include './header.php'; ?> <!-- HEADER -->
     <div class="container-lg">
         <div class="row mb-5">
-            <!-- SIDE NAVBAR --> <?php include './sidebar.php'; ?>
-            <!-- CONTENT --> <?php include $page; ?>
+            <?php include './sidebar.php'; ?> <!-- SIDE NAVBAR -->
+            <?php include $page; ?> <!-- CONTENT -->
         </div>
         <div class="fixed-bottom text-center bg-light py-2"><i class="bi bi-arrow-through-heart-fill"></i>
             Selamat Datang di Kantin Biru FTI UKSW <i class="bi bi-chat-heart-fill"></i>

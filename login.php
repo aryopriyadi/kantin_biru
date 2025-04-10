@@ -42,13 +42,7 @@ if (!empty($_SESSION['username_kantinbiru'])) {
                     Please Insert Valid Password!
                 </div>
             </div>
-            <!-- <div class="form-check text-start my-3">
-                <input class="form-check-input" type="checkbox" value="remember-me" id="flexCheckDefault">
-                <label class="form-check-label" for="flexCheckDefault">
-                    Remember me
-                </label>
-            </div> -->
-            <p class="text-muted"><?php echo date("l, Y-m-d")?></p> <!-- **CHANGED HERE** -->
+            <p class="text-muted"><?php echo date("l, Y-m-d") ?></p>
             <button class="btn btn-lg btn-primary w-100" type="submit" name="submit_validate" value="1">Login</button>
         </form>
     </main>
