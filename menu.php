@@ -1,6 +1,7 @@
 <?php
 // use LDAP\Result;
 include "proses/connect.php";
+include "main.php";
 // $query = mysqli_query($conn, "SELECT * FROM tb_menu LEFT JOIN tb_kategori_menu ON tb_kategori_menu.id = tb_menu.kategori");
 // $query = mysqli_query($conn, "SELECT tb_menu.*, tb_kategori_menu.kategori_menu FROM tb_menu LEFT JOIN tb_kategori_menu ON tb_kategori_menu.id = tb_menu.kategori GROUP BY tb_menu.id");
 // $query = mysqli_query($conn, "SELECT tb_menu.*, tb_kategori_menu.* FROM tb_menu LEFT JOIN tb_kategori_menu ON tb_kategori_menu.id = tb_menu.kategori");
