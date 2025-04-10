@@ -1,7 +1,6 @@
 <?php
 // use LDAP\Result;
 include "proses/connect.php";
-include "main.php";
 $query = mysqli_query($conn, "SELECT * FROM tb_user");
 while ($record = mysqli_fetch_array($query)) {
     $result[] = $record;

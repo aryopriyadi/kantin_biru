@@ -1,6 +1,5 @@
 <?php
 include "proses/connect.php";
-include "main.php";
 $query = mysqli_query($conn, "SELECT * FROM tb_menu");
 while ($row = mysqli_fetch_array($query)) {
     $result[] = $row;

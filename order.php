@@ -1,6 +1,5 @@
 <?php
 include "proses/connect.php";
-include "main.php";
 date_default_timezone_set('Asia/Jakarta');
 
 // Fetch all unpaid orders
