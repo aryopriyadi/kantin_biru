@@ -1,5 +1,6 @@
 <?php
 include "proses/connect.php";
+include "main.php";
 date_default_timezone_set('Asia/Jakarta');
 $query = mysqli_query($conn, "SELECT tb_order.*, tb_bayar.*, nama, SUM(harga*jumlah) AS total_harga FROM tb_order 
 LEFT JOIN tb_user ON tb_user.id = tb_order.pelayan
