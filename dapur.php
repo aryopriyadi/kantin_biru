@@ -1,5 +1,6 @@
 <?php
 include "proses/connect.php";
+include "main.php";
 $query = mysqli_query($conn, "SELECT * FROM tb_list_order
 LEFT JOIN tb_order ON tb_order.id_order = tb_list_order.kode_order
 LEFT JOIN tb_menu ON tb_menu.id = tb_list_order.menu
