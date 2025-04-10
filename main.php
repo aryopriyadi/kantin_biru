@@ -1,6 +1,7 @@
 <?php if (empty($_SESSION['username_kantinbiru'])) {
     header('location: login');
 }
+session_start();
 include "proses/connect.php";
 $query = mysqli_query($conn, "SELECT * FROM tb_user WHERE username = '$_SESSION[username_kantinbiru]'");
 $hasil = mysqli_fetch_array($query);
