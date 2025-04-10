@@ -11,7 +11,7 @@ COPY . /var/www/html/
 
 # Set file permissions (adjust as needed)
 RUN chown -R www-data:www-data /var/www/html/
-RUN chmod -R 755 /var/www/html/
+RUN chmod -R 777 /var/www/html/
 
 # Expose the PHP-FPM port
 EXPOSE 9000
