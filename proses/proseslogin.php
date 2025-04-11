@@ -1,4 +1,5 @@
 <?php
+session_start();
 // echo md5('password');
 include "connect.php";
 $username = (isset($_POST['username'])) ? htmlentities($_POST['username']) : "";
