@@ -9,7 +9,7 @@ if (!empty($_POST['order_menu_diterima_validate'])) {
     if (!$query) {
         $message = '<script>alert("Order Tidak Jadi Diterima Konsumen"); window.location="../dapur" </script>';
     } else {
-        $message = '<script>alert("Order Sudah Diterima Konsumen"); window.location="../dapur" </script>';
+        $message = '<script>alert("Order Siap Disajikan"); window.location="../dapur" </script>';
     }
 }
 echo $message;

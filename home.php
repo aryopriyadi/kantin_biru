@@ -57,7 +57,7 @@ while ($row = mysqli_fetch_array($query)) {
         <div class="card-body text-center">
             <h5 class="card-title">Selamat Datang di Kantin Biru FTI UKSW</h5>
             <p class="card-text">1 Korintus 16 : 14 = "Lakukan segala pekerjaanmu dalam Kasih!"</p>
-            <a href="order" class="btn btn-primary"> Silahkan Order </a>
+            <!-- <a href="order" class="btn btn-primary"> Silahkan Order </a> -->
         </div>
     </div>
 </div>

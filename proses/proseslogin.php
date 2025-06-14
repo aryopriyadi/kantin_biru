@@ -1,11 +1,8 @@
-<?php
+<?php 
 session_start();
-// echo md5('password');
 include "connect.php";
 $username = (isset($_POST['username'])) ? htmlentities($_POST['username']) : "";
 $password = (isset($_POST['password'])) ? md5(htmlentities($_POST['password'])) : "";
-// echo $password;
-// exit();
 
 if (!empty($_POST['submit_validate'])) {
     $query = mysqli_query($conn, "SELECT * FROM tb_user WHERE username = '$username' AND password = '$password'");

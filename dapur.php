@@ -5,7 +5,8 @@ LEFT JOIN tb_order ON tb_order.id_order = tb_list_order.kode_order
 LEFT JOIN tb_menu ON tb_menu.id = tb_list_order.menu
 LEFT JOIN tb_bayar ON tb_bayar.id_bayar = tb_order.id_order
 LEFT JOIN tb_kategori_menu ON tb_menu.kategori = tb_kategori_menu.id_kategori
--- WHERE tb_list_order.status_menu != 3
+WHERE tb_kategori_menu.jenis_menu = 4 
+AND tb_bayar.id_bayar = tb_order.id_order
 ORDER BY tb_list_order.kode_order DESC");
 
 $result = [];
@@ -206,10 +207,10 @@ $select_menu = mysqli_query($conn, "SELECT id, nama_menu FROM tb_menu");
                                 <th scope="col">Nama</th>
                                 <th scope="col">Meja</th>
                                 <th scope="col">Nama Menu</th>
-                                <th scope="col">Jenis</th>
+                                <!-- <th scope="col">Jenis</th> -->
                                 <th scope="col">Qty</th>
                                 <th scope="col">Notes</th>
-                                <th scope="col">Status</th>
+                                <!-- <th scope="col">Status</th> -->
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
@@ -224,10 +225,10 @@ $select_menu = mysqli_query($conn, "SELECT id, nama_menu FROM tb_menu");
                                         <td><?php echo $row['pelanggan'] ?></td>
                                         <td><?php echo $row['meja'] ?></td>
                                         <td><?php echo $row['nama_menu'] ?></td>
-                                        <td><?php echo $row['kategori_menu']?></td>
+                                        <!-- <td><?php echo $row['kategori_menu']?></td> -->
                                         <td><?php echo $row['jumlah'] ?></td>
                                         <td><?php echo $row['catatan_menu'] ?></td>
-                                        <td><?php if ($row['status_menu'] == 1) {
+                                        <!-- <td><?php if ($row['status_menu'] == 1) {
                                                 echo "<span class='badge text-bg-warning'>Diproses Dapur</span>";
                                             } elseif ($row['status_menu'] == 2) {
                                                 echo "<span class='badge text-bg-success'>Siap Saji</span>";
@@ -235,12 +236,13 @@ $select_menu = mysqli_query($conn, "SELECT id, nama_menu FROM tb_menu");
                                                 echo "<span class='badge text-bg-primary'>Diterima</span>";
                                             } else {
                                                 echo "<span class='badge text-bg-secondary'>Belum Diproses</span>";
-                                            } ?></td>
+                                            } ?></td> -->
                                         <td>
                                             <div class="d-flex">
-                                                <button class="<?php echo ($row['status_menu'] == 1 || $row['status_menu'] == 2 || $row['status_menu'] == 3) ? "btn btn-secondary btn-sm disabled me-1" : "btn btn-warning btn-sm me-1"; ?>" data-bs-toggle="modal" data-bs-target="#terimaorder<?php echo $row['id_list_order'] ?>"><i class="bi bi-clipboard-check"></i></button>
+                                                <!-- <button class="<?php echo ($row['status_menu'] == 1 || $row['status_menu'] == 2 || $row['status_menu'] == 3) ? "btn btn-secondary btn-sm disabled me-1" : "btn btn-warning btn-sm me-1"; ?>" data-bs-toggle="modal" data-bs-target="#terimaorder<?php echo $row['id_list_order'] ?>"><i class="bi bi-clipboard-check"></i></button>
                                                 <button class="<?php echo ($row['status_menu'] != 1) ? "btn btn-secondary btn-sm disabled me-1" : "btn btn-success btn-sm me-1"; ?>" data-bs-toggle="modal" data-bs-target="#siapsaji<?php echo $row['id_list_order'] ?>"><i class="bi bi-check-all"></i></button>
-                                                <button class="<?php echo ($row['status_menu'] != 2) ? "btn btn-secondary btn-sm disabled me-1" : "btn btn-primary btn-sm me-1"; ?>" data-bs-toggle="modal" data-bs-target="#diterima<?php echo $row['id_list_order'] ?>"><i class="bi bi-bag-check"></i></button>
+                                                <button class="<?php echo ($row['status_menu'] != 2) ? "btn btn-secondary btn-sm disabled me-1" : "btn btn-primary btn-sm me-1"; ?>" data-bs-toggle="modal" data-bs-target="#diterima<?php echo $row['id_list_order'] ?>"><i class="bi bi-bag-check"></i></button> -->
+                                                <button class="<?php echo (!empty($row['status_menu'])) ? "btn btn-secondary btn-sm me-1 disabled" : "btn btn-primary btn-sm me-1"; ?>" data-bs-toggle="modal" data-bs-target="#diterima<?php echo $row['id_list_order'] ?>"><i class="bi bi-bag-check"></i></button>
                                             </div>
                                         </td>
                                     </tr>

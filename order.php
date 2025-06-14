@@ -223,11 +223,22 @@ while ($record = mysqli_fetch_array($query)) {
                                         <input type="hidden" name="pelanggan" value="<?php echo $row['pelanggan'] ?>">
                                         <input type="hidden" name="total" value="<?php echo $total ?>">
                                         <div class="row">
-                                            <div class="col-lg-12">
+                                            <div class="col-lg-6">
                                                 <div class="form-floating mb-2">
                                                     <input type="number" class="form-control" id="floatingInput" placeholder="nominal uang" name="uang" required>
                                                     <label for="floatingInput"> Nominal Bayar</label>
                                                     <div class="invalid-feedback"> Masukkan Nominal Pembayaran</div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="form-floating mb-2">
+                                                    <select class="form-select" aria-label="Default select example" name="tipe" required>
+                                                        <option value="" hidden>Tipe Bayar</option>
+                                                        <option value="1">Cash <i class="bi bi-cash"></i></option>
+                                                        <option value="2">QRIS <i class="bi bi-qr-code"></i></option>
+                                                    </select>
+                                                    <label for="floatingInput">Access Level</label>
+                                                    <div class="invalid-feedback"> Pilih Access Level</div>
                                                 </div>
                                             </div>
                                         </div>

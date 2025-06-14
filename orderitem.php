@@ -4,6 +4,7 @@ $query = mysqli_query($conn, "SELECT *, SUM(harga*jumlah) AS total_harga, tb_ord
 LEFT JOIN tb_order ON tb_order.id_order = tb_list_order.kode_order
 LEFT JOIN tb_menu ON tb_menu.id = tb_list_order.menu
 LEFT JOIN tb_bayar ON tb_bayar.id_bayar = tb_order.id_order
+LEFT JOIN tb_kategori_menu ON tb_kategori_menu.id_kategori = tb_menu.kategori
 GROUP BY id_list_order HAVING tb_list_order.kode_order = $_GET[order] ORDER BY tb_menu.nama_menu ASC");
 
 $kode = $_GET['order'];
@@ -89,6 +90,10 @@ $select_menu = mysqli_query($conn, "SELECT tb_menu.id, tb_menu.nama_menu, tb_men
                             <form class="needs-validation" novalidate action="proses/prosesinputorderitem.php" method="POST">
                                 <div class="table-responsive mt-2">
                                     <table class="table table-hover" id="orderitem">
+                                        <div class="modal-header">
+                                            <button type="button" class="btn btn-secondary me-1" data-bs-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-primary" name="input_orderitem_validate" value="1">Upload changes</button>
+                                        </div>
                                         <thead>
                                             <tr class="text-nowrap">
                                                 <th scope="col">No</th>
@@ -130,10 +135,6 @@ $select_menu = mysqli_query($conn, "SELECT tb_menu.id, tb_menu.nama_menu, tb_men
                                             <?php } ?>
                                         </tbody>
                                     </table>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                        <button type="submit" class="btn btn-primary" name="input_orderitem_validate" value="1">Upload changes</button>
-                                    </div>
                                 </div>
                             </form>
                         </div>
@@ -297,11 +298,22 @@ $select_menu = mysqli_query($conn, "SELECT tb_menu.id, tb_menu.nama_menu, tb_men
                                     <input type="hidden" name="pelanggan" value="<?php echo $pelanggan ?>">
                                     <input type="hidden" name="total" value="<?php echo $total ?>">
                                     <div class="row">
-                                        <div class="col-lg-12">
+                                        <div class="col-lg-6">
                                             <div class="form-floating mb-2">
                                                 <input type="number" class="form-control" id="floatingInput" placeholder="nominal uang" name="uang" required>
                                                 <label for="floatingInput"> Nominal Bayar</label>
                                                 <div class="invalid-feedback"> Masukkan Nominal Pembayaran</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="form-floating mb-2">
+                                                <select class="form-select" aria-label="Default select example" name="tipe" required>
+                                                    <option value="" hidden>Tipe Bayar</option>
+                                                    <option value="1">Cash <i class="bi bi-cash"></i></option>
+                                                    <option value="2">QRIS <i class="bi bi-qr-code"></i></option>
+                                                </select>
+                                                <label for="floatingInput">Access Level</label>
+                                                <div class="invalid-feedback"> Pilih Access Level</div>
                                             </div>
                                         </div>
                                     </div>
@@ -325,6 +337,7 @@ $select_menu = mysqli_query($conn, "SELECT tb_menu.id, tb_menu.nama_menu, tb_men
                                 <th scope="col">Harga Menu</th>
                                 <th scope="col">Quantity</th>
                                 <th scope="col">Status</th>
+                                <th scope="col">Kategori</th>
                                 <th scope="col">Catatan</th>
                                 <th scope="col">Sub Total Harga</th>
                                 <th scope="col">Action</th>
@@ -350,6 +363,7 @@ $select_menu = mysqli_query($conn, "SELECT tb_menu.id, tb_menu.nama_menu, tb_men
                                         } else {
                                             echo "<span class='badge text-bg-secondary'>Belum Diproses</span>";
                                         } ?> </td>
+                                    <td><?php echo $row['kategori_menu'] ?></td>
                                     <td><?php echo $row['catatan_menu'] ?></td>
                                     <td><?php echo number_format((int)$row['total_harga'], 0, ',', '.') ?></td>
                                     <td>
@@ -363,7 +377,7 @@ $select_menu = mysqli_query($conn, "SELECT tb_menu.id, tb_menu.nama_menu, tb_men
                             } ?>
                         </tbody>
                         <tr>
-                            <td colspan="5" class="fw-bold"><b>Grand Total Harga</td>
+                            <td colspan="6" class="fw-bold"><b>Grand Total Harga</td>
                             <td class="fw-bold"><?php echo number_format((int)$total, 0, ',', '.') ?></b></td>
                             <td>
                                 <button class="<?php echo $paymentExists ? "btn btn-secondary btn-sm disabled me-1" : "btn btn-primary btn-sm me-1"; ?>" data-bs-toggle="modal" data-bs-target="#tambahItem"><i class="bi bi-bag-plus"></i></button>

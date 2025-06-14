@@ -34,6 +34,7 @@ while ($record = mysqli_fetch_array($query)) {
                                                 <option value="1">Makanan</option>
                                                 <option value="2">Minuman</option>
                                                 <option value="3">Barang-Barang</option>
+                                                <option value="4">Masakan Dapur</option>
                                             </select>
                                             <label for="floatingInput">Jenis Menu</label>
                                             <div class="invalid-feedback"> Masukkan Jenis Menu</div>
@@ -79,7 +80,7 @@ while ($record = mysqli_fetch_array($query)) {
                                                 <div class="form-floating mb-2">
                                                     <select class="form-select" aria-label="Default select example" id="" name="jenis_menu">
                                                         <?php
-                                                        $data = array("Makanan", "Minuman", "Barang-Barang");
+                                                        $data = array("Makanan", "Minuman", "Barang-Barang", "Masakan Dapur");
                                                         foreach ($data as $key => $value) {
                                                             if ($row['jenis_menu'] == $key + 1) {
                                                                 echo "<option selected value=" . ($key + 1) . "> $value </option>";
@@ -164,6 +165,8 @@ while ($record = mysqli_fetch_array($query)) {
                                                 echo "Minuman";
                                             } else if ($row['jenis_menu'] == 3) {
                                                 echo "Barang-Barang";
+                                            } else if ($row['jenis_menu'] == 4){
+                                                echo "Masakan Dapur";
                                             } else {
                                                 echo "Barang Tidak Tersedia";
                                             }

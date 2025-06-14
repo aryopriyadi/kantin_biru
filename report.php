@@ -1,6 +1,7 @@
 <?php
 include "proses/connect.php";
 date_default_timezone_set('Asia/Jakarta');
+
 $query = mysqli_query($conn, "SELECT tb_order.*, tb_bayar.*, nama, SUM(harga*jumlah) AS total_harga FROM tb_order 
 LEFT JOIN tb_user ON tb_user.id = tb_order.pelayan
 LEFT JOIN tb_list_order ON tb_list_order.kode_order = tb_order.id_order
@@ -16,7 +17,7 @@ while ($record = mysqli_fetch_array($query)) {
 <div class="col-lg-10 mt-2 rounded">
     <div class="card">
         <div class="card-header">
-            Halaman History Sales Report
+            Halaman History Order Sales Report
         </div>
         <div class="card-body">
             <?php

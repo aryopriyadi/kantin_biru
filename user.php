@@ -1,6 +1,6 @@
 <?php
 include "proses/connect.php";
-$query = mysqli_query($conn, "SELECT * FROM tb_user");
+$query = mysqli_query($conn, "SELECT * FROM tb_user ORDER BY level ASC");
 while ($record = mysqli_fetch_array($query)) {
     $result[] = $record;
 }
@@ -50,9 +50,9 @@ while ($record = mysqli_fetch_array($query)) {
                                             <select class="form-select" aria-label="Default select example" name="level" required>
                                                 <option value="" hidden>Access Level</option>
                                                 <option value="1">1 - Super Admin</option>
-                                                <option value="2">2 - Cashier</option>
-                                                <option value="3">3 - Waiter</option>
-                                                <option value="4">4 - Kitchen</option>
+                                                <option value="2">2 - Bidang 3 SMF</option>
+                                                <option value="3">3 - Fungsio Kantin</option>
+                                                <option value="4">4 - Dapur</option>
                                             </select>
                                             <label for="floatingInput">Access Level</label>
                                             <div class="invalid-feedback"> Pilih Access Level</div>
@@ -185,7 +185,7 @@ while ($record = mysqli_fetch_array($query)) {
                                             <div class="form-floating mb-2">
                                                 <select class="form-select" aria-label="Default select example" id="" name="level" required>
                                                     <?php
-                                                    $data = array("Super Admin", "Cashier", "Waiter", "Kitchen");
+                                                    $data = array("Super Admin", "Bidang 3 SMF", "Fungsio Kantin", "Dapur");
                                                     foreach ($data as $key => $value) {
                                                         if ($row['level'] == $key + 1) {
                                                             echo "<option selected value=" . ($key + 1) . "> $value </option>";
@@ -323,11 +323,11 @@ while ($record = mysqli_fetch_array($query)) {
                                         if ($row['level'] == 1) {
                                             echo "Super Admin";
                                         } else if ($row['level'] == 2) {
-                                            echo "Cashier";
+                                            echo "Bidang 3 SMF";
                                         } else if ($row['level'] == 3) {
-                                            echo "Waiter";
+                                            echo "Fungsio Kantin";
                                         } else if ($row['level'] == 4) {
-                                            echo "Kitchen";
+                                            echo "Kitchen (Dapur)";
                                         } else {
                                             echo "Tidak ada access level";
                                         }
