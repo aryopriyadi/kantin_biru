@@ -10,7 +10,7 @@ if (!empty($_POST['delete_listorder_validate'])) {
     if (!$query) {
         $message = '<script> alert("Data Gagal dihapus"); window.location="../?x=orderitem&order='.$kode_order.'&meja='.$meja.'&pelanggan='.$pelanggan.'" </script>';
     } else {
-        $message = '<script> alert("Data Berhasil dihapus"); window.location="../?x=orderitem&order='.$kode_order.'&meja='.$meja.'&pelanggan='.$pelanggan.'" </script>';
+        $message = '<script> window.location="../?x=orderitem&order='.$kode_order.'&meja='.$meja.'&pelanggan='.$pelanggan.'" </script>';
     }
 }
 echo $message;

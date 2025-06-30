@@ -11,7 +11,7 @@ if (!empty($_POST['input_kategori_validate'])) {
     } else {
         $query = mysqli_query($conn, "UPDATE tb_kategori_menu SET jenis_menu='$jenis_menu', kategori_menu='$kategori' WHERE id_kategori='$id_kategori_menu'");
         if ($query) {
-            $message = '<script> alert("Data Berhasil disimpan"); window.location="../kategori" </script>';
+            $message = '<script> window.location="../kategori" </script>';
         } else {
             $message = '<script> alert("Data Gagal disimpan"); window.location="../kategori" </script>';
         }

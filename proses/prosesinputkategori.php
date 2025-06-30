@@ -12,7 +12,7 @@ if (!empty($_POST['input_kategori_validate'])) {
         if (!$query) {
             $message = '<script>alert("Data Gagal disimpan"); window.location="../kategori" </script>';
         } else {
-            $message = '<script>alert("Data Berhasil disimpan"); window.location="../kategori" </script>';
+            $message = '<script> window.location="../kategori" </script>';
         }
     }
 }

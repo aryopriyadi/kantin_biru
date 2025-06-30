@@ -52,7 +52,7 @@ if (!empty($_POST['edit_menu_validate'])) {
                         $query = mysqli_query($conn, "UPDATE tb_menu SET foto='" . $kode_rand . $_FILES['foto']['name'] . "', nama_menu='$nama_menu', kategori='$kategori_menu', harga='$harga', stock='$stock', deskripsi='$deskripsi' WHERE id='$id'");
                     }
                     if ($query) {
-                        $message = '<script>alert("Data Berhasil disimpan"); window.location="../menu" </script>';
+                        $message = '<script> window.location="../menu" </script>';
                     } else {
                         $message = '<script>alert("Data Gagal disimpan"); window.location="../menu" </script>';
                     }
@@ -72,7 +72,7 @@ if (!empty($_POST['edit_menu_validate'])) {
                 $query = mysqli_query($conn, "UPDATE tb_menu SET nama_menu='$nama_menu', kategori='$kategori_menu', harga='$harga', stock='$stock', deskripsi='$deskripsi' WHERE id='$id'");
             }
             if ($query) {
-                $message = '<script>alert("Data Berhasil disimpan"); window.location="../menu" </script>';
+                $message = '<script> window.location="../menu" </script>';
             } else {
                 $message = '<script>alert("Data Gagal disimpan"); window.location="../menu" </script>';
             }

@@ -11,7 +11,7 @@ if (!empty($_POST['delete_order_validate'])) {
         if (!$query) {
             $message = '<script> alert("Data Gagal dihapus"); window.location="../order" </script>';
         } else {
-            $message = '<script> alert("Data Berhasil dihapus"); window.location="../order" </script>';
+            $message = '<script> window.location="../order" </script>';
         }
     }
 }

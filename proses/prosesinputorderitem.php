@@ -49,7 +49,7 @@ if (!empty($_POST['input_orderitem_validate'])) {
 
         if ($success) {
             $conn->commit(); // Commit transaction
-            $message = '<script>alert("Data Berhasil Ditambahkan"); window.location="../?x=orderitem&order=' . $kode_order . '&meja=' . $meja . '&pelanggan=' . $pelanggan . '";</script>';
+            $message = '<script> window.location="../?x=orderitem&order=' . $kode_order . '&meja=' . $meja . '&pelanggan=' . $pelanggan . '";</script>';
         } else {
             $conn->rollback(); // Rollback transaction
         }

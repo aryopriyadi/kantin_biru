@@ -10,7 +10,7 @@ if (!empty($_POST['ubah_profile_validate'])) {
     if (!$query) {
         $message = '<script>alert("Profile Gagal Diperbarui"); window.history.back() </script>';
     } else {
-        $message = '<script>alert("Profile Berhasil Diperbarui"); window.history.back() </script>';
+        $message = '<script> window.history.back() </script>';
     }
 } else {
     $message = '<script>alert("Data Profile Harus Diisi"); window.history.back() </script>';

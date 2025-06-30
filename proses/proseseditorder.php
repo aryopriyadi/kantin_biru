@@ -12,7 +12,7 @@ if (!empty($_POST['edit_order_validate'])) {
     if (!$query) {
         $message = '<script>alert("Data Gagal disimpan: ' . mysqli_error($conn) . '"); window.location="../order" </script>';
     } else {
-        $message = '<script>alert("Data Berhasil disimpan"); window.location="../order" </script>';
+        $message = '<script> window.location="../order" </script>';
     }
 }
 echo $message;

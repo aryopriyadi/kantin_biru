@@ -15,7 +15,7 @@ if (!empty($_POST['input_user_validate'])) {
         if (!$query) {
             $message = '<script>alert("Data Gagal disimpan"); window.location="../user" </script>';
         } else {
-            $message = '<script>alert("Data Berhasil disimpan"); window.location="../user" </script>';
+            $message = '<script> window.location="../user" </script>';
         }
     }
 }

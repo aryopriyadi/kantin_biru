@@ -9,7 +9,7 @@ if (!empty($_POST['terima_order_validate'])) {
     if (!$query) {
         $message = '<script>alert("Order Gagal Diterima Dapur"); window.location="../dapur" </script>';
     } else {
-        $message = '<script>alert("Order Berhasil Diterima Dapur"); window.location="../dapur" </script>';
+        $message = '<script> window.location="../dapur" </script>';
     }
 }
 echo $message;

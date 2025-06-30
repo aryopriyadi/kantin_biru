@@ -15,7 +15,7 @@ if (!empty($_POST['input_order_validate'])) {
         if (!$query) {
             $message = '<script>alert("Data Gagal disimpan: ' . mysqli_error($conn). '"); window.location="../order" </script>';
         } else {
-            $message = '<script>alert("Data Berhasil disimpan"); window.location="../?x=orderitem&order='.$kode_order.'&meja='.$meja.'&pelanggan='.$pelanggan.'" </script>';
+            $message = '<script> window.location="../?x=orderitem&order='.$kode_order.'&meja='.$meja.'&pelanggan='.$pelanggan.'" </script>';
         }
     }
 }

@@ -20,10 +20,11 @@ if (!empty($_POST['delete_menu_validate'])) {
             }
         }
         mysqli_commit($conn);
-        $message = '<script> alert("Data Berhasil dihapus"); window.location="../menu" </script>';
+        $message = '<script> window.location="../menu" </script>';
     } catch (Exception $e) {
         mysqli_rollback($conn);
-        $message = '<script> alert("Data Gagal dihapus: ' . $e->getMessage() . '"); window.location="../menu" </script>';
+        //$message = '<script> alert("Data Gagal dihapus: ' . $e->getMessage() . '"); window.location="../menu" </script>';
+        $message = '<script> alert("Data Gagal dihapus, Menu sudah terdaftar di dalam Order"); window.location="../menu" </script>';
     }
 }
 

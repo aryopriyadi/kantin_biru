@@ -7,6 +7,6 @@ if (!empty($_POST['delete_user_validate'])) {
     if (!$query) {
         $message = '<script> alert("Data Gagal dihapus"); window.location="../user" </script>';
     } else {
-        $message = '<script> alert("Data Berhasil dihapus"); window.location="../user" </script>';
+        $message = '<script> window.location="../user" </script>';
     }
 } echo $message;

@@ -7,6 +7,6 @@ if (!empty($_POST['reset_user_validate'])) {
     if (!$query) {
         $message = '<script> alert("Password Gagal Direset"); window.location="../user" </script>';
     } else {
-        $message = '<script> alert("Password Berhasil Direset"); window.location="../user" </script>';
+        $message = '<script> alert("Password Berhasil Direset menjadi = "Password" "); window.location="../user" </script>';
     }
 } echo $message; 

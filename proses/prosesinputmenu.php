@@ -47,7 +47,7 @@ if (!empty($_POST['input_menu_validate'])) { // Validate image
                 $query .= ($stock === null) ? "NULL" : "'" . $stock . "'";
                 $query .= ", '$deskripsi')";
                 if (mysqli_query($conn, $query)) {
-                    $message = '<script>alert("Data Berhasil disimpan"); window.location="../menu" </script>';
+                    $message = '<script> window.location="../menu" </script>';
                 } else {
                     $message = '<script>alert("Data Gagal disimpan"); window.location="../menu" </script>';
                 }

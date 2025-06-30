@@ -16,7 +16,7 @@ if (!empty($_POST['input_user_validate'])) { // Periksa apakah username diubah d
         } else { // Jika username unik, lakukan update
             $query = mysqli_query($conn, "UPDATE tb_user SET nama='$nama', username='$username', level='$level', nim='$nim', password='$password' WHERE id='$id'");
             if ($query) {
-                $message = '<script>alert("Data Berhasil disimpan"); window.location="../user";</script>';
+                $message = '<script> window.location="../user";</script>';
             } else {
                 $message = '<script>alert("Data Gagal disimpan"); window.location="../user";</script>';
             }
@@ -24,7 +24,7 @@ if (!empty($_POST['input_user_validate'])) { // Periksa apakah username diubah d
     } else { // Jika username tidak diubah atau kosong, lakukan update tanpa mengubah username
         $query = mysqli_query($conn, "UPDATE tb_user SET nama='$nama', level='$level', nim='$nim', password='$password' WHERE id='$id'");
         if ($query) {
-            $message = '<script>alert("Data Berhasil disimpan"); window.location="../user";</script>';
+            $message = '<script> window.location="../user";</script>';
         } else {
             $message = '<script>alert("Data Gagal disimpan"); window.location="../user";</script>';
         }

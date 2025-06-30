@@ -11,7 +11,7 @@ if (!empty($_POST['delete_kategori_validate'])) {
         if (!$query) {
             $message = '<script> alert("Data Gagal dihapus"); window.location="../kategori" </script>';
         } else {
-            $message = '<script> alert("Data Berhasil dihapus"); window.location="../kategori" </script>';
+            $message = '<script> window.location="../kategori" </script>';
         }
     }
 }

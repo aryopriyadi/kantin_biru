@@ -9,7 +9,7 @@ if (!empty($_POST['order_menu_siap_saji_validate'])) {
     if (!$query) {
         $message = '<script>alert("Order Gagal Disajikan"); window.location="../dapur" </script>';
     } else {
-        $message = '<script>alert("Order Siap Disajikan"); window.location="../dapur" </script>';
+        $message = '<script> window.location="../dapur" </script>';
     }
 }
 echo $message;

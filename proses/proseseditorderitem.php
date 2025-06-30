@@ -24,7 +24,7 @@ if (!empty($_POST['edit_orderitem_validate'])) {
         $stmt = $conn->prepare("UPDATE tb_list_order SET menu = ?, jumlah = ?, catatan_menu = ? WHERE id_list_order = ?");
         $stmt->bind_param("iiss", $menu, $jumlah, $catatan, $id);
         if ($stmt->execute()) {
-            $message = '<script>alert("Data Berhasil diperbarui"); window.location="../?x=orderitem&order=' . $kode_order . '&meja=' . $meja . '&pelanggan=' . $pelanggan . '"</script>';
+            $message = '<script> window.location="../?x=orderitem&order=' . $kode_order . '&meja=' . $meja . '&pelanggan=' . $pelanggan . '"</script>';
         } else {
             $message = '<script>alert("Data Gagal diperbarui: ' . $stmt->error . '"); window.location="../?x=orderitem&order=' . $kode_order . '&meja=' . $meja . '&pelanggan=' . $pelanggan . '"</script>';
         }
